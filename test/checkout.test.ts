@@ -76,6 +76,19 @@ describe('index.ts', () => {
                 const result = checkout('AAABBBCCCDDD')
                 expect(result).toBe(310)
             })
-        }) 
+        })
+
+        describe('can handle a new product E', () => {
+            it('returns 10 for product E', () => {
+                const result = checkout('E')
+                expect(result).toBe(10)
+            })
+
+            it('returns a discount 4 E\'s is 30', () => {
+                const result = checkout('EEEE')
+                expect(result).toBe(30)
+            })
+        })
+
     })
 })
