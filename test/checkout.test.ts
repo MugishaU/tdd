@@ -45,5 +45,37 @@ describe('index.ts', () => {
             const result = checkout('ACA')
             expect(result).toBe(120)
         })
+
+        it('applies the discount and returns 130 when given A three times', () => {
+            const result = checkout('AAA')
+            expect(result).toBe(130)
+        })
+
+        it('applies the discount and returns 45 when given B three times', () => {
+            const result = checkout('BB')
+            expect(result).toBe(45)
+        })
+
+        it('applies the discount multiple times and returns 260 when given A six times', () => {
+            const result = checkout('AAAAAA')
+            expect(result).toBe(260)
+        })
+
+        it('applies the discount multiple times and returns 90 when given B four times', () => {
+            const result = checkout('BBBB')
+            expect(result).toBe(90)
+        })
+
+        describe('can handle complex inputs', () => {
+            it('returns 260 when given products AABCDADDCD', () => {
+                const result = checkout('AABCDADDCD')
+                expect(result).toBe(260)
+            })
+
+            it('returns 310 when given products AAABBBCCCDDD', () => {
+                const result = checkout('AAABBBCCCDDD')
+                expect(result).toBe(310)
+            })
+        }) 
     })
 })
