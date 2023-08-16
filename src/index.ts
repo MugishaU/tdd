@@ -15,12 +15,11 @@ export const getPrice = (product: string): number => {
 
 export const checkout = (products: string): number => {
     let cost = 0
-    const productArray = products.split('')
 
     let ACounter = 0
     let BCounter = 0
 
-    for(const product of productArray){
+    for(const product of products){
         if(product === 'A'){
             ACounter++
         } else if(product === 'B'){
@@ -30,8 +29,15 @@ export const checkout = (products: string): number => {
         cost += getPrice(product)
     }
 
-    const discountA = Math.floor(ACounter / 3) * 20
-    const discountB = Math.floor(BCounter / 2) * 15
+    const A_DISCOUNT_QUALIFIER = 3
+    const A_DISCOUNT_VALUE = 20
+
+    const B_DISCOUNT_QUALIFIER = 2
+    const B_DISCOUNT_VALUE = 15
+
+
+    const discountA = Math.floor(ACounter / A_DISCOUNT_QUALIFIER) * A_DISCOUNT_VALUE
+    const discountB = Math.floor(BCounter / B_DISCOUNT_QUALIFIER) * B_DISCOUNT_VALUE
         
     return cost - discountA - discountB
 }
